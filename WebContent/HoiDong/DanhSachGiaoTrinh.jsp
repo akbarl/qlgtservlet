@@ -5,9 +5,10 @@
 <%@page import="java.util.ArrayList"%>
 <jsp:include page="/WEB-INF/header.jsp" />
 <jsp:include page="menu.jsp" />
-Chào, ${sessionScope.USER} - ${sessionScope.ID}
 
+Chào, ${sessionScope.USER} - ${sessionScope.ROLES}
 <%ArrayList<GiaoTrinh> listgt = new GiaoTrinh_Model().getAll(); %>
+
 <fieldset>
 <div class="form-group">
 <div class="panel panel-default">
@@ -21,30 +22,34 @@ Chào, ${sessionScope.USER} - ${sessionScope.ID}
 			<th>Tình trạng</th>
 	        <th>Ngày đăng ký</th>
 			<th>Ngày hoàn thành</th>
+			<th>Lap Hoi Dong</th>
 	      </tr>
 	    </thead>
 	    <tbody>
 	    <%for(GiaoTrinh gt : listgt){ %>
-	      <tr>
-	        <td><%= gt.getMaGiaoTrinh() %></td>
-	        <td><%= gt.getTenGiaoTrinh() %></td>
-	        <% if(gt.getMaHoiDong() == 0){ %>
-	       	 	<td>Chua lap hoi dong</td>
-	       	<% }else{%>
-	       		<td><%= gt.getMaHoiDong() %></td>
-	       	<% }%>
-			<% if(gt.getTinhTrang() == 0){ %>
-	       	 	<td>Dang cho lap hoi dong</td>
-	       	<% }else{%>
-	       		<td><%= gt.getMaHoiDong() %></td>
-	       	<% }%>
-			<th><%= gt.getNgayDangKy() %></th>
-			<th><%= gt.getNgayHoanThanh() %></th>
-	      </tr>
+	    <% if(gt.getMaHoiDong() == 0){ %>
+		      <tr>
+		        <td><%= gt.getMaGiaoTrinh() %></td>
+		        <td><%= gt.getTenGiaoTrinh() %></td>
+		        <% if(gt.getMaHoiDong() == 0){ %>
+		       	 	<td>Chua lap hoi dong</td>
+		       	<% }else{%>
+		       		<td><%= gt.getMaHoiDong() %></td>
+		       	<% }%>
+				<% if(gt.getTinhTrang() == 0){ %>
+		       	 	<td>Dang cho lap hoi dong</td>
+		       	<% }else{%>
+		       		<td><%= gt.getMaHoiDong() %></td>
+		       	<% }%>
+				<th><%= gt.getNgayDangKy() %></th>
+				<th><%= gt.getNgayHoanThanh() %></th>
+				<th><a href="LapHoiDong.jsp?magiaotrinh=<%= gt.getMaGiaoTrinh() %>">Lap</a></th>
+		      </tr>
+		  <%} %>
 	      <%} %>
 	    </tbody>
 	</table>
 </div>
 </fieldset>
-
+</div>
 <jsp:include page="/WEB-INF/footer.jsp" />

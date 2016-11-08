@@ -2,7 +2,8 @@
     pageEncoding="UTF-8"%>
 <jsp:include page="/WEB-INF/header.jsp" />
 <jsp:include page="menu.jsp" />
-Chào, ${sessionScope.USER} - ${sessionScope.ROLES}
+
+Chào, ${sessionScope.USER} - ${sessionScope.ID}
 <form action="../insertGiaoTrinh">
 <fieldset>
 <div class="form-group col-md-12">
@@ -15,7 +16,7 @@ Chào, ${sessionScope.USER} - ${sessionScope.ROLES}
     </div>
     <div class="form-group">
 	<label for="tengiaotrinh">Ma Giang Vien:</label>
-    <input type="text" class="form-control" name="txtMaGiangVien" value="1" disabled>
+    <input type="text" class="form-control" name="txtMaGiangVien" value="${sessionScope.ID}" disabled>
 	</div>
 	<div class="form-group">
     <label for="tengiaotrinh">Ngay Hoan Thanh:</label>

@@ -3,12 +3,16 @@ package Model;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import Classes.GiangVien;
 public class GiangVien_Model {
 	
 	private Connection conn;
+	Statement stmt = null;
+	ResultSet rs = null;
 	
 	public GiangVien_Model() throws Exception
 	{
@@ -35,6 +39,18 @@ public class GiangVien_Model {
 		pst.setInt(9, gv.getMaHoiDong());
 		
 		return pst.executeUpdate() > 0 ;
+	}
+	
+	public int getIDbyEmail(String Email) throws SQLException
+	{
+		String sql = "SELECT * FROM giangvien WHERE Email = ?";
+		PreparedStatement pst = conn.prepareStatement(sql);
+		pst.setString(1, Email);
+		rs = pst.executeQuery();
+		if(rs.next())
+			return rs.getInt("MaGiangVien");
+		else
+			return 0;
 	}
 	
 	

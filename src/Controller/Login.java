@@ -56,14 +56,14 @@ public class Login extends HttpServlet {
 				boolean result = login.checkLogin(username, password);
 		
 				int roles;
-				int idcb;
+				int ID;
 				if(result){
 					HttpSession session = request.getSession(true);
 					session.setAttribute("USER", username);
 					roles = login.getLoaiNguoiDung(username, password);
 					session.setAttribute("ROLES", roles);
-					idcb = login.getIDCanBo(username, password);
-					session.setAttribute("IDCB", idcb);
+					ID = login.getIDCanBo(username);
+					session.setAttribute("ID", ID);
 					
 					url = homePage;
 				

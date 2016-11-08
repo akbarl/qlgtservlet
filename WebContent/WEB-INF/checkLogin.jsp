@@ -1,8 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-
-<jsp:include page="/WEB-INF/header.jsp" />
-<jsp:include page="menu.jsp" />
 <% 
 	String user = (String)request.getSession().getAttribute("USER"); 
 	Integer role = (Integer)request.getSession().getAttribute("ROLES"); 
@@ -14,8 +9,3 @@
    		response.sendRedirect(request.getContextPath());
    	}
 %>
-
-<form action="../Logout" method="post">
-   		<input type="submit" value="Chào, ${sessionScope.USER} - ${sessionScope.ID}"/>									 
-	</form>
-<jsp:include page="/WEB-INF/footer.jsp" />

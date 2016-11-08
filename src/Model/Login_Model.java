@@ -34,16 +34,24 @@ public class Login_Model {
 		return false;
 	}
 	
-	public int getIDCanBo(String username, String password){
+	public int getIDCanBo(String username) throws SQLException, Exception{
 		// Quy uoc:
 		// 1: Admin
 		// 2: 
 		// 3: 
 		// 4: 
 		Connection conn = null;
-		int id_cb=0;
-		
-		return id_cb;
+		Database db = new Database();
+		conn=db.getConn();
+		//GiangVien_Model gv = new GiangVien_Model().getIDbyEmail(username);
+		String sql = "Select * From giangvien Where Email = ?";
+		PreparedStatement pst = conn.prepareStatement(sql);
+		pst.setString(1, username);
+		ResultSet rs = pst.executeQuery();
+		if(rs.next())
+			return rs.getInt("MaGiangVien");
+		else
+			return 0;
 	}
 	
 	public int getLoaiNguoiDung(String username, String password){

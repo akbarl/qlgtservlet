@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="style.css" />
+<link rel="stylesheet" type="text/css" href="http://localhost:8080/QLGT/style.css" />
 <title>Insert title here</title>
 </head>
 <body>
@@ -15,6 +15,7 @@
 	<span class="label label-info">AN GIANG UNIVERSITY</span>
   </header>
   <div class="row">
-  <div class="col-sm-4">
+		<div class="col-sm-4"></div>
+		<div class="col-sm-4"></div>
   </div>
-  <div class="col-sm-4">
+</div>

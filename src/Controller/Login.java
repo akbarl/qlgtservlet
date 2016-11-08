@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import Model.LoginModel;
+import Model.Login_Model;
 
 /**
  * Servlet implementation class LoginController
@@ -24,7 +24,7 @@ public class Login extends HttpServlet {
      * @see HttpServlet#HttpServlet()
      */
 	final private String errorPage="index.jsp";
-	final private String homePage="/WEB-INF/homePage.jsp";
+	final private String homePage="/WEB-INF/homeGiangVien.jsp";
 	
     public Login() {
         super();
@@ -52,7 +52,7 @@ public class Login extends HttpServlet {
 			if(action.equals("login")){
 				String username = request.getParameter("txtUsername");
 				String password = request.getParameter("txtPass");
-				LoginModel login = new LoginModel();
+				Login_Model login = new Login_Model();
 				boolean result = login.checkLogin(username, password);
 		
 				int roles;
@@ -70,8 +70,9 @@ public class Login extends HttpServlet {
 				}
 				else url=errorPage;
 					
-				RequestDispatcher rd = request.getRequestDispatcher(url);
-				rd.include(request, response);
+				//RequestDispatcher rd = request.getRequestDispatcher(url);
+				//rd.include(request, response);
+				response.sendRedirect("GiangVien");
 			}
 		}
 		catch(Exception e){

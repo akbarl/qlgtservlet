@@ -3,9 +3,9 @@ package Model;
 import java.sql.*;
 import java.io.*;
 
-public class LoginModel {
+public class Login_Model {
 	
-	public LoginModel(){
+	public Login_Model(){
 	}
 	
 	public boolean checkLogin(String username, String password){

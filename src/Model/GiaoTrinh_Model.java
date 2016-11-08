@@ -69,6 +69,27 @@ public class GiaoTrinh_Model {
 		 }
 		 conn.close();
 		 return lst;
-		}
+	}
+	
+	public boolean updateHoiDong(int magt, int hd) throws SQLException
+	{
+		String sql = "UPDATE giaotrinh SET MaHoiDong = ? WHERE MaGiaoTrinh = ?";
+		PreparedStatement pst = conn.prepareStatement(sql);
+		pst.setInt(1, hd);
+		pst.setInt(2, magt);
+		return pst.executeUpdate() > 0 ;
+		
+	}
+	
+	public boolean updateTinhTrang(int magt, int tt) throws SQLException
+	{
+		String sql = "UPDATE giaotrinh SET TinhTrang = ? WHERE MaGiaoTrinh = ?";
+		PreparedStatement pst = conn.prepareStatement(sql);
+		pst.setInt(1, tt);
+		pst.setInt(2, magt);
+		return pst.executeUpdate() > 0 ;
+		
+	}
+	
 
 }

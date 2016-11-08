@@ -53,6 +53,16 @@ public class GiangVien_Model {
 			return 0;
 	}
 	
+	public boolean updateHoiDong(int magv, int hd) throws SQLException
+	{
+		String sql = "UPDATE giangvien SET MaHoiDong = ? WHERE MaGiangVien = ?";
+		PreparedStatement pst = conn.prepareStatement(sql);
+		pst.setInt(1, hd);
+		pst.setInt(2, magv);
+		return pst.executeUpdate() > 0 ;
+		
+	}
+	
 	
 
 }

@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import Classes.GiangVien;
 import Classes.HoiDong;
@@ -25,6 +26,13 @@ public class HoiDong_Model {
 		return true;
 	}
 	
+	protected Statement getStatement() throws SQLException, Exception{
+		 if(stmt == null){
+			 stmt = conn.createStatement();
+		 }
+		 return stmt;
+	}
+	
 	public int insertHoiDong(HoiDong hd) throws SQLException
 	{
 		int result = 0;
@@ -40,6 +48,27 @@ public class HoiDong_Model {
 		    result =rs.getInt(1);
 		}
 		return result;
+	}
+	
+	public ArrayList<HoiDong> getAll() throws Exception{
+		 ArrayList<HoiDong> lst = new ArrayList<HoiDong>();
+		 String strSQL = "select * from hoidong";
+		 try {
+			 rs = getStatement().executeQuery(strSQL);
+			 while(rs.next()){
+				 HoiDong hd = new HoiDong();
+				 hd.setMaHoiDong(rs.getInt("MaHoiDong"));
+				 hd.setTenHoiDong(rs.getString("TenHoiDong"));
+				 hd.setMaGiaoTrinh(rs.getInt("MaGiaoTrinh"));
+				 hd.setNgayThanhLap(rs.getDate("NgayNghiemThu"));
+				 hd.setNgayNghiemThu(rs.getDate("NgayNghiemThu"));
+				 lst.add(hd);
+			 }
+		 } catch (Exception e) {
+			 throw new Exception(e.getMessage() +" Error at : " + strSQL);
+		 }
+		 conn.close();
+		 return lst;
 	}
 
 }

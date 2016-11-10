@@ -55,15 +55,17 @@ public class Login extends HttpServlet {
 				Login_Model login = new Login_Model();
 				boolean result = login.checkLogin(username, password);
 		
-				int roles;
-				int ID;
+				int roles, id;
+				String name;
 				if(result){
 					HttpSession session = request.getSession(true);
 					session.setAttribute("USER", username);
-					roles = login.getLoaiNguoiDung(username, password);
+					roles = login.getLoaiNguoiDung(username);
 					session.setAttribute("ROLES", roles);
-					ID = login.getIDCanBo(username);
-					session.setAttribute("ID", ID);
+					id = login.getIDGiangVien(username);
+					session.setAttribute("ID", id);
+					name = login.getTenGiangVien(username);
+					session.setAttribute("NAME", name);
 					
 					url = homePage;
 				

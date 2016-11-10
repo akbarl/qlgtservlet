@@ -21,12 +21,10 @@
 			<th>Tình trạng</th>
 	        <th>Ngày đăng ký</th>
 			<th>Ngày hoàn thành</th>
-			<th>Lap Hoi Dong</th>
 	      </tr>
 	    </thead>
 	    <tbody>
 	    <%for(GiaoTrinh gt : listgt){ %>
-	    <% if(gt.getMaHoiDong() == 0){ %>
 		      <tr>
 		        <td><%= gt.getMaGiaoTrinh() %></td>
 		        <td><%= gt.getTenGiaoTrinh() %></td>
@@ -35,16 +33,10 @@
 		       	<% }else{%>
 		       		<td><%= gt.getMaHoiDong() %></td>
 		       	<% }%>
-				<% if(gt.getTinhTrang() == 0){ %>
-		       	 	<td>Dang cho lap hoi dong</td>
-		       	<% }else{%>
-		       		<td><%= gt.getMaHoiDong() %></td>
-		       	<% }%>
-				<th><%= gt.getNgayDangKy() %></th>
-				<th><%= gt.getNgayHoanThanh() %></th>
-				<th><a href="LapHoiDong.jsp?magiaotrinh=<%= gt.getMaGiaoTrinh() %>">Lap</a></th>
+				<td><%= new GiaoTrinh_Model().getTenTinhTrang(gt.getTinhTrang()) %></td>
+				<td><%= gt.getNgayDangKy() %></td>
+				<td><%= gt.getNgayHoanThanh() %></td>
 		      </tr>
-		  <%} %>
 	      <%} %>
 	    </tbody>
 	</table>

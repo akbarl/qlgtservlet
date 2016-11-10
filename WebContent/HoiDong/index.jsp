@@ -12,10 +12,10 @@
    	if(user == null) {	
    		// Neu dang nhap roi thi hien link cho phep dang xuat
    		response.sendRedirect(request.getContextPath());
+   	}else if(role != 2)
+   	{
+   		response.sendRedirect(request.getContextPath()+"/GiangVien");
    	}
 %>
 
-<form action="../Logout" method="post">
-   		<input type="submit" value="Chào, ${sessionScope.USER} - ${sessionScope.ID}"/>									 
-	</form>
 <jsp:include page="/WEB-INF/footer.jsp" />

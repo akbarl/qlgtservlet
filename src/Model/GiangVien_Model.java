@@ -6,8 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import Classes.GiangVien;
+import Classes.GiaoTrinh;
 public class GiangVien_Model {
 	
 	private Connection conn;
@@ -24,9 +26,16 @@ public class GiangVien_Model {
 		conn.close();
 		return true;
 	}
+	
+	protected Statement getStatement() throws SQLException, Exception{
+		 if(stmt == null){
+			 stmt = conn.createStatement();
+		 }
+		 return stmt;
+	}
 	public boolean insertGiangVien(GiangVien gv) throws SQLException
 	{
-		String sql = "insert into GiangVien(MaGiangVien, TenGiangVien, Email, MatKhau, DiaChi, SoDienThoai, NgaySinh, MaKhoa, MaHoiDong) VALUES(?,?,?,?,?,?,?,?,?)";
+		String sql = "insert into GiangVien(MaGiangVien, TenGiangVien, Email, MatKhau, DiaChi, SoDienThoai, NgaySinh, MaKhoa, MaHoiDong, LoaiNguoiDung) VALUES(?,?,?,?,?,?,?,?,?,?)";
 		PreparedStatement pst = conn.prepareStatement(sql);
 		pst.setInt(1, gv.getMaGiangVien());
 		pst.setString(2, gv.getTenGiangVien());
@@ -37,7 +46,7 @@ public class GiangVien_Model {
 		pst.setDate(7, gv.getNgaySinh());
 		pst.setInt(8, gv.getMaKhoa());
 		pst.setInt(9, gv.getMaHoiDong());
-		
+		pst.setInt(10, gv.getMaChucVu());
 		return pst.executeUpdate() > 0 ;
 	}
 	
@@ -61,6 +70,38 @@ public class GiangVien_Model {
 		pst.setInt(2, magv);
 		return pst.executeUpdate() > 0 ;
 		
+	}
+	
+	public ArrayList<GiangVien> getAll() throws Exception{
+		 ArrayList<GiangVien> lst = new ArrayList<GiangVien>();
+		 String strSQL = "select * from giangvien";
+		 try {
+			 rs = getStatement().executeQuery(strSQL);
+			 while(rs.next()){
+				 GiangVien gv = new GiangVien();
+				 gv.setMaGiangVien(rs.getInt("MaGiangVien"));
+				 gv.setTenGiangVien(rs.getString("TenGiangVien"));
+				 gv.setEmail(rs.getString("Email"));
+				 gv.setMaHoiDong(rs.getInt("MaHoiDong"));
+				 gv.setMaChucVu(rs.getInt("LoaiNguoiDung"));
+				 lst.add(gv);
+			 }
+		 } catch (Exception e) {
+			 throw new Exception(e.getMessage() +" Error at : " + strSQL);
+		 }
+		 conn.close();
+		 return lst;
+	}
+	
+	public String getTenChucVu(int MaChucVu)
+	{
+		if(MaChucVu == 1)
+			return "Giang Vien";
+		if(MaChucVu == 2)
+			return "Truong Khoa";
+		if(MaChucVu == 3)
+			return "Admin";
+		return "";
 	}
 	
 	

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 07, 2016 at 11:34 AM
+-- Generation Time: Nov 10, 2016 at 03:50 AM
 -- Server version: 5.7.12
 -- PHP Version: 5.6.21
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `QLGT`
+-- Database: `qlgt`
 --
 
 -- --------------------------------------------------------
@@ -36,9 +36,22 @@ CREATE TABLE `giangvien` (
   `NgaySinh` date DEFAULT NULL,
   `MaKhoa` int(10) UNSIGNED NOT NULL,
   `MaHoiDong` int(10) UNSIGNED DEFAULT NULL,
+  `isAdmin` int(11) UNSIGNED DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `giangvien`
+--
+
+INSERT INTO `giangvien` (`MaGiangVien`, `TenGiangVien`, `Email`, `MatKhau`, `DiaChi`, `SoDienThoai`, `NgaySinh`, `MaKhoa`, `MaHoiDong`, `isAdmin`, `created_at`, `updated_at`) VALUES
+(1, 'user', 'user@user', 'ee11cbb19052e40b07aac0ca060c23ee', NULL, NULL, NULL, 1, NULL, 0, NULL, NULL),
+(2, 'user1', 'user1@user1', 'ee11cbb19052e40b07aac0ca060c23ee', NULL, NULL, NULL, 1, NULL, 0, NULL, NULL),
+(3, 'user', 'gv@user', 'ee11cbb19052e40b07aac0ca060c23ee', NULL, NULL, NULL, 1, NULL, 0, NULL, NULL),
+(4, 'user', 'tk@user', 'ee11cbb19052e40b07aac0ca060c23ee', NULL, NULL, NULL, 1, NULL, 0, NULL, NULL),
+(5, 'user', 'tv1@user', 'ee11cbb19052e40b07aac0ca060c23ee', NULL, NULL, NULL, 1, NULL, 0, NULL, NULL),
+(6, 'admin', 'admin@admin', '21232f297a57a5a743894a0e4a801fc3', NULL, NULL, NULL, 1, NULL, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -83,10 +96,17 @@ CREATE TABLE `hoidong` (
 CREATE TABLE `khoa` (
   `MaKhoa` int(10) UNSIGNED NOT NULL,
   `TenKhoa` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `TruongKhoa` int(10) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `TruongKhoa` int(10) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `khoa`
+--
+
+INSERT INTO `khoa` (`MaKhoa`, `TenKhoa`, `TruongKhoa`, `created_at`, `updated_at`) VALUES
+(1, 'CNTT', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -157,7 +177,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `giangvien`
 --
 ALTER TABLE `giangvien`
-  MODIFY `MaGiangVien` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `MaGiangVien` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `giaotrinh`
 --
@@ -172,7 +192,7 @@ ALTER TABLE `hoidong`
 -- AUTO_INCREMENT for table `khoa`
 --
 ALTER TABLE `khoa`
-  MODIFY `MaKhoa` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `MaKhoa` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `migrations`
 --
@@ -196,12 +216,6 @@ ALTER TABLE `giaotrinh`
   ADD CONSTRAINT `giaotrinh_magiangvien_foreign` FOREIGN KEY (`MaGiangVien`) REFERENCES `giangvien` (`MaGiangVien`),
   ADD CONSTRAINT `giaotrinh_mahoidong_foreign` FOREIGN KEY (`MaHoiDong`) REFERENCES `hoidong` (`MaHoiDong`);
 
-  --
--- Constraints for table `giaotrinh`
---
-ALTER TABLE `khoa`
-  ADD CONSTRAINT `khoa_magiangvien_foreign` FOREIGN KEY (`TruongKhoa`) REFERENCES `giangvien` (`MaGiangVien`);
-  
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

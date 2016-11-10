@@ -14,6 +14,7 @@ public class GiangVien {
 	private Date NgaySinh;
 	private int MaKhoa;
 	private int MaHoiDong;
+	private int MaChucVu;
 	
 	public GiangVien(GiangVien gv) throws Exception
 	{
@@ -26,8 +27,10 @@ public class GiangVien {
 		NgaySinh = gv.NgaySinh;
 		MaKhoa = gv.MaKhoa;
 		MaHoiDong = gv.MaHoiDong;
+		MaChucVu = gv.MaChucVu;
 	}
-
+	
+	public GiangVien(){};
 	public int getMaGiangVien() {
 		return MaGiangVien;
 	}
@@ -94,6 +97,14 @@ public class GiangVien {
 
 	public int getMaHoiDong() {
 		return MaHoiDong;
+	}
+
+	public int getMaChucVu() {
+		return MaChucVu;
+	}
+
+	public void setMaChucVu(int maChucVu) {
+		MaChucVu = maChucVu;
 	}
 
 	public void setMaHoiDong(int maHoiDong) {

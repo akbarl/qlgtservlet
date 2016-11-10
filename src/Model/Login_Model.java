@@ -33,13 +33,12 @@ public class Login_Model {
 		}
 		return false;
 	}
-	
-	public int getIDCanBo(String username) throws SQLException, Exception{
-		// Quy uoc:
-		// 1: Admin
-		// 2: 
-		// 3: 
-		// 4: 
+		public int getIDGiangVien(String username) throws SQLException, Exception{	// Quy uoc:
+			// Quy uoc:
+			// 1: Giang Vien
+			// 2: Truong Khoa
+			// 3: Admin
+			// 4: 
 		Connection conn = null;
 		Database db = new Database();
 		conn=db.getConn();
@@ -54,15 +53,43 @@ public class Login_Model {
 			return 0;
 	}
 	
-	public int getLoaiNguoiDung(String username, String password){
+	public int getLoaiNguoiDung(String username) throws Exception{
 		// Quy uoc:
-		// 1: Admin
-		// 2: 
-		// 3: 
+		// 1: Giang Vien
+		// 2: Truong Khoa
+		// 3: Admin
 		// 4: 
 		Connection conn = null;
-		int loaicb = 10;
-		
-		return loaicb;
+		Database db = new Database();
+		conn=db.getConn();
+		//GiangVien_Model gv = new GiangVien_Model().getIDbyEmail(username);
+		String sql = "Select LoaiNguoiDung From giangvien Where Email = ?";
+		PreparedStatement pst = conn.prepareStatement(sql);
+		pst.setString(1, username);
+		ResultSet rs = pst.executeQuery();
+		if(rs.next())
+			return rs.getInt("LoaiNguoiDung");
+		else
+			return 0;
+	}
+	
+	public String getTenGiangVien(String username) throws Exception{
+		// Quy uoc:
+		// 1: Giang Vien
+		// 2: Truong Khoa
+		// 3: Admin
+		// 4: 
+		Connection conn = null;
+		Database db = new Database();
+		conn=db.getConn();
+		//GiangVien_Model gv = new GiangVien_Model().getIDbyEmail(username);
+		String sql = "Select TenGiangVien From giangvien Where Email = ?";
+		PreparedStatement pst = conn.prepareStatement(sql);
+		pst.setString(1, username);
+		ResultSet rs = pst.executeQuery();
+		if(rs.next())
+			return rs.getString("TenGiangVien");
+		else
+			return "";
 	}
 }

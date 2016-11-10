@@ -74,10 +74,10 @@ public class insertHoiDong extends HttpServlet {
 				for(int i = 0 ; i< dsgv.length;i++)
 				{
 					GiangVien_Model gv = new GiangVien_Model();
-					if(gv.updateHoiDong(dsgv[0], mahd));
+					if(gv.updateHoiDong(dsgv[i], mahd));
 				}
 				GiaoTrinh_Model gtm = new GiaoTrinh_Model();
-				if(gtm.updateHoiDong(magt, mahd) && gtm.updateHoiDong(magt, 1));
+				if(gtm.updateHoiDong(magt, mahd) && gtm.updateTinhTrang(magt, 1));
 				response.sendRedirect("HoiDong/DanhSachGiaoTrinh.jsp");
 				
 			}

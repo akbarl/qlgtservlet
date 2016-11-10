@@ -91,5 +91,22 @@ public class GiaoTrinh_Model {
 		
 	}
 	
+	public String getTenTinhTrang(int MaTinhTrang)
+	{
+		if(MaTinhTrang == 0)
+			return "Cho lap hoi dong";
+		if(MaTinhTrang == 1)
+			return "Da lap hoi dong";
+		if(MaTinhTrang == 2)
+			return "Dang bien soan";
+		if(MaTinhTrang == 3)
+			return "Hoan tat bien soan";
+		if(MaTinhTrang == 4)
+			return "Dang nghiem thu";
+		if(MaTinhTrang == 5)
+			return "Hoan tat nghiem thu";
+		return "";
+	}
+	
 
 }

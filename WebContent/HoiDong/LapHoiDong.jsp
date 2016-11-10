@@ -6,13 +6,13 @@
 <jsp:include page="/WEB-INF/header.jsp" />
 <jsp:include page="menu.jsp" />
 
-Chào, ${sessionScope.USER} - ${sessionScope.ROLES}
+
 <%ArrayList<GiaoTrinh> listgt = new GiaoTrinh_Model().getAll(); %>
 
 <fieldset>
 <div class="form-group">
 <div class="panel panel-default">
-	<div class="panel-heading">Tên GV: Nguyễn Văn A</div>
+	<div class="panel-heading">Tên GV: ${sessionScope.NAME}</div>
     <div class="panel-body">
     <form action="../insertHoiDong" method="POST">
     	<div class="form-group">

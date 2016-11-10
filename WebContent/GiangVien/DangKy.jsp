@@ -3,7 +3,6 @@
 <jsp:include page="/WEB-INF/header.jsp" />
 <jsp:include page="menu.jsp" />
 
-Chào, ${sessionScope.USER} - ${sessionScope.ID}
 <form action="../insertGiaoTrinh">
 <fieldset>
 <div class="form-group col-md-12">

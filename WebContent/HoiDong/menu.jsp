@@ -7,5 +7,7 @@
 	<a href="search"><img  src="../HinhAnh/HoiDong/timkiem.png"  /></a>
 	<a href="search"><img  src="../HinhAnh/HoiDong/thongke.png"  /></a>
 </div>
-	
+<form action="../Logout" method="post">
+   		<input type="submit" value="Chào, ${sessionScope.USER} - ID: ${sessionScope.ID} - ROLES: ${sessionScope.ROLES}"/>									 
+</form>
 

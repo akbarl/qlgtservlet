@@ -6,7 +6,10 @@
 <jsp:include page="/WEB-INF/header.jsp" />
 <jsp:include page="menu.jsp" />
 
-<%ArrayList<GiaoTrinh> listgt = new GiaoTrinh_Model().getAll(); %>
+<%
+	int MaGiangVien = (int) request.getSession().getAttribute("ID");
+	ArrayList<GiaoTrinh> listgt = new GiaoTrinh_Model().getAllbyMaGiangVien(MaGiangVien); 
+%>
 <fieldset>
 <div class="form-group">
 <div class="panel panel-default">
@@ -20,6 +23,7 @@
 			<th>Tình trạng</th>
 	        <th>Ngày đăng ký</th>
 			<th>Ngày hoàn thành</th>
+			<th>Hanh dong</th>
 	      </tr>
 	    </thead>
 	    <tbody>
@@ -32,13 +36,21 @@
 	       	<% }else{%>
 	       		<td><%= gt.getMaHoiDong() %></td>
 	       	<% }%>
-			<% if(gt.getTinhTrang() == 0){ %>
-	       	 	<td>Dang cho lap hoi dong</td>
-	       	<% }else{%>
-	       		<td><%= gt.getMaHoiDong() %></td>
+			<td><%= new GiaoTrinh_Model().getTenTinhTrang(gt.getTinhTrang()) %></td>
+			<td><%= gt.getNgayDangKy() %></td>
+			<td><%= gt.getNgayHoanThanh() %></td>
+			<form action="../updateGiaoTrinh">
+				
+			<% if(gt.getTinhTrang() != 0 && gt.getTinhTrang() >= 3 && gt.getTinhTrang() < 5){ %>
+					<input type="hidden" name="magiaotrinh" value="<%= gt.getMaGiaoTrinh() %>"/>
+					<input type="hidden" name="action" value="updateTinhTrang"/>
+					<input type="hidden" name="matinhtrang" value="<%= gt.getTinhTrang() %>"/>
+					<input type="hidden" name="redirect" value="Admin"/>
+					<td><input type="submit" class="btn btn-success" value="Cap nhat"></td>
+			<% }else{%>
+	       		<td></td>
 	       	<% }%>
-			<th><%= gt.getNgayDangKy() %></th>
-			<th><%= gt.getNgayHoanThanh() %></th>
+	       	</form>
 	      </tr>
 	      <%} %>
 	    </tbody>

@@ -60,14 +60,6 @@ public class insertGiaoTrinh extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		
-		
-		
-		
-		
-		
-		 
-		
 	}
 
 	/**

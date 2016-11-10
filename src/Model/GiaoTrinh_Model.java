@@ -71,6 +71,51 @@ public class GiaoTrinh_Model {
 		 return lst;
 	}
 	
+	public ArrayList<GiaoTrinh> getAllbyMaGiangVien(int MaGiangVien) throws Exception{
+		 ArrayList<GiaoTrinh> lst = new ArrayList<GiaoTrinh>();
+		 String strSQL = "select * from giaotrinh where MaGiangVien = "+MaGiangVien;
+		 try {
+			 rs = getStatement().executeQuery(strSQL);
+			 while(rs.next()){
+				 GiaoTrinh gt = new GiaoTrinh();
+				 gt.setMaGiaoTrinh(rs.getInt("MaGiaoTrinh"));
+				 gt.setTenGiaoTrinh(rs.getString("TenGiaoTrinh"));
+				 gt.setNgayDangKy(rs.getDate("NgayDangKy"));
+				 gt.setNgayHoanThanh(rs.getDate("NgayHoanThanh"));
+				 gt.setTinhTrang(rs.getInt("TinhTrang"));
+				 gt.setMaGiangVien(rs.getInt("MaGiangVien"));
+				 gt.setMaHoiDong(rs.getInt("MaHoiDong"));
+				 lst.add(gt);
+			 }
+		 } catch (Exception e) {
+			 throw new Exception(e.getMessage() +" Error at : " + strSQL);
+		 }
+		 conn.close();
+		 return lst;
+	}
+	
+	public GiaoTrinh getGiaoTrinhbyID(int MaGiaoTrinh) throws Exception
+	{
+		String strSQL = "SELECT * FROM giaotrinh WHERE MaGiaoTrinh = "+MaGiaoTrinh;
+		GiaoTrinh gt = new GiaoTrinh();
+		try{
+			rs = getStatement().executeQuery(strSQL);
+			while(rs.next()){
+				 gt.setMaGiaoTrinh(rs.getInt("MaGiaoTrinh"));
+				 gt.setTenGiaoTrinh(rs.getString("TenGiaoTrinh"));
+				 gt.setNgayDangKy(rs.getDate("NgayDangKy"));
+				 gt.setNgayHoanThanh(rs.getDate("NgayHoanThanh"));
+				 gt.setTinhTrang(rs.getInt("TinhTrang"));
+				 gt.setMaGiangVien(rs.getInt("MaGiangVien"));
+				 gt.setMaHoiDong(rs.getInt("MaHoiDong"));
+			 }
+			
+		}catch (Exception e) {
+			 throw new Exception(e.getMessage() +" Error at : " + strSQL);
+		}
+		conn.close();
+		return gt;
+	}
 	public boolean updateHoiDong(int magt, int hd) throws SQLException
 	{
 		String sql = "UPDATE giaotrinh SET MaHoiDong = ? WHERE MaGiaoTrinh = ?";
@@ -106,6 +151,17 @@ public class GiaoTrinh_Model {
 		if(MaTinhTrang == 5)
 			return "Hoan tat nghiem thu";
 		return "";
+	}
+	
+	public boolean updateGiaoTrinh(GiaoTrinh gt) throws SQLException
+	{
+		String sql = "UPDATE giaotrinh SET TenGiaoTrinh = ?, NgayHoanThanh = ? WHERE MaGiaoTrinh = ?";
+		PreparedStatement pst = conn.prepareStatement(sql);
+		pst.setString(1, gt.getTenGiaoTrinh());
+		pst.setDate(2, gt.getNgayHoanThanh());
+		pst.setInt(3, gt.getMaGiaoTrinh());
+		return pst.executeUpdate() > 0 ;
+		
 	}
 	
 

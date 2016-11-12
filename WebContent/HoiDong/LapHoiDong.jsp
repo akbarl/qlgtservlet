@@ -64,10 +64,10 @@
 						1
 						</td>
 						<td>
-						<input type="text" name="dsgv"  placeholder='Ma Giang Vien' class="form-control"/>
+						<input type="text" name="dsgv"  value="${sessionScope.ID}" placeholder='Ma Giang Vien' class="form-control"/>
 						</td>
 						<td>
-						<input type="text" name='mail0' placeholder='Ten Giang Vien' class="form-control"/>
+						<input type="text" name='mail0' placeholder='Ten Giang Vien' value="${sessionScope.NAME}" class="form-control"/>
 						</td>
 		    		<tr id='addr1'></tr>
 		    	</tbody>

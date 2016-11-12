@@ -43,22 +43,52 @@ public class updateHoiDong extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		//doGet(request, response);
 		String action = request.getParameter("action");
 		int mahoidong = Integer.parseInt(request.getParameter("txtMaHoiDong"));
 		String redirect = request.getParameter("redirect");
 		if(action.equalsIgnoreCase("updateHoiDong"))
 		{
-			String[] s_dsgv = request.getParameterValues("dsgv");
-			int[] dsgv = new int[s_dsgv.length];
-			for(int i = 0; i < s_dsgv.length ; i++)
-	    	{
-				dsgv[i] = Integer.parseInt(s_dsgv[i]);
-	    	}
 			
+				String[] s_dsgv = request.getParameterValues("dsgv");
+				
+				//log(String.valueOf(s_dsgv.length));
+				int j = 0;
+				for(int i = 0; i < s_dsgv.length ; i++)
+		    	{
+					if(s_dsgv[i].length() > 0)
+						j++;
+						//dsgv[i] = Integer.parseInt(s_dsgv[i]);
+		    	}
+				log(String.valueOf(j));
+				int[] dsgv = new int[j];
+				j = 0;
+				for(int i = 0; i < s_dsgv.length; i++)
+		    	{
+					//log(String.valueOf(s_dsgv[i].length()));
+					
+					if(s_dsgv[i].length() > 0)
+					{
+						dsgv[j] = Integer.parseInt(s_dsgv[i]);
+						//log("j = "+j+" phia tren:"+String.valueOf(dsgv[j]));
+						j++;
+						
+					}
+					
+		    	}
 			HoiDong hd = new HoiDong();
 			hd.setMaHoiDong(Integer.parseInt(request.getParameter("txtMaHoiDong")));
 			hd.setTenHoiDong(request.getParameter("txtTenHoiDong"));
-			hd.setMaHoiDong(Integer.parseInt(request.getParameter("txtMaGiaoTrinh")));
+			hd.setMaGiaoTrinh(Integer.parseInt(request.getParameter("txtMaGiaoTrinh")));
+			
 			try {
 				hd.setNgayThanhLap(new Date(parseDate(request.getParameter("txtNgayThanhLap"), "yyyy-MM-dd").getTime()));
 				hd.setNgayNghiemThu(new Date(parseDate(request.getParameter("txtNgayNghiemThu"), "yyyy-MM-dd").getTime()));
@@ -71,12 +101,23 @@ public class updateHoiDong extends HttpServlet {
 			try {
 				HoiDong_Model hdm = new HoiDong_Model();
 				GiangVien_Model gvm = new GiangVien_Model();
-				if(hdm.updateHoiDong(hd) && gvm.setHoiDongNull(mahoidong));
+				GiangVien_Model gv = new GiangVien_Model();
+				if(hdm.updateHoiDong(hd))
+				{
+					if(gvm.setHoiDongNull(mahoidong));
+				}
+				//log("Length"+String.valueOf(dsgv.length));
+				
 				for(int i = 0 ; i< dsgv.length;i++)
 				{
-					GiangVien_Model gv = new GiangVien_Model();
+					
+					log("gv :"+dsgv[i]+" ma hoi dong:"+mahoidong);
+					//log("phia duoi:"+String.valueOf(dsgv[i]));
 					if(gv.updateHoiDong(dsgv[i], mahoidong));
 				}
+				
+				
+				
 				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -89,14 +130,6 @@ public class updateHoiDong extends HttpServlet {
 				
 				
 		}
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }

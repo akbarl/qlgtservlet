@@ -12,6 +12,9 @@
    	if(user == null) {	
    		// Neu dang nhap roi thi hien link cho phep dang xuat
    		response.sendRedirect(request.getContextPath());
+   	}else if(role != 3)
+   	{
+   		response.sendRedirect(request.getContextPath()+"/GiangVien");
    	}
 %>
 

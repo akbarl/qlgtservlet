@@ -93,6 +93,58 @@ public class GiangVien_Model {
 		 return lst;
 	}
 	
+	public GiangVien getGiangVienbyID(int MaGiangVien) throws Exception
+	{
+		String strSQL = "SELECT * FROM giangvien WHERE MaGiangVien = "+MaGiangVien;
+		GiangVien gv = new GiangVien();
+		try{
+			rs = getStatement().executeQuery(strSQL);
+			while(rs.next()){
+				gv.setMaGiangVien(rs.getInt("MaGiangVien"));
+				gv.setTenGiangVien(rs.getString("TenGiangVien"));
+				gv.setEmail(rs.getString("Email"));
+				gv.setMatKhau(rs.getString("MatKhau"));
+				gv.setDiaChi(rs.getString("DiaChi"));
+				gv.setSoDienThoai(rs.getString("SoDienThoai"));
+				gv.setNgaySinh(rs.getDate("NgaySinh"));
+				gv.setMaKhoa(rs.getInt("MaKhoa"));
+				gv.setMaHoiDong(rs.getInt("MaHoiDong"));
+				gv.setMaChucVu(rs.getInt("LoaiNguoiDung"));
+			 }
+			
+		}catch (Exception e) {
+			 throw new Exception(e.getMessage() +" Error at : " + strSQL);
+		}
+		conn.close();
+		return gv;
+	}
+	
+	public boolean updateGiangVien(GiangVien gv) throws SQLException
+	{
+		String sql = "Update giangvien SET TenGiangVien = ?, Email = ?, DiaChi = ?, SoDienThoai = ?, NgaySinh = ?, MaKhoa = ?, LoaiNguoiDung = ? WHERE MaGiangVien = ?";
+		PreparedStatement pst = conn.prepareStatement(sql);
+		//pst.setInt(1, gv.getMaGiangVien());
+		pst.setString(1, gv.getTenGiangVien());
+		pst.setString(2, gv.getEmail());
+		//pst.setString(4, gv.getMatKhau());
+		pst.setString(3, gv.getDiaChi());
+		pst.setString(4, gv.getSoDienThoai());
+		pst.setDate(5, gv.getNgaySinh());
+		pst.setInt(6, gv.getMaKhoa());
+		//pst.setInt(7, gv.getMaHoiDong());
+		pst.setInt(7, gv.getMaChucVu());
+		pst.setInt(8, gv.getMaGiangVien());
+		return pst.executeUpdate() > 0 ;
+	}
+	
+	public boolean deleteGiangVien(int MaGiangVien) throws SQLException
+	{
+		String sql = "DELETE FROM giangvien WHERE MaGiangVien = ?";
+		PreparedStatement pst = conn.prepareStatement(sql);
+		pst.setInt(1, MaGiangVien);
+		return pst.executeUpdate() > 0 ;
+	}
+	
 	public String getTenChucVu(int MaChucVu)
 	{
 		if(MaChucVu == 1)

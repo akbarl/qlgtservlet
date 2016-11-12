@@ -41,14 +41,14 @@
 			<td><%= gt.getNgayHoanThanh() %></td>
 			<form action="../updateGiaoTrinh">
 				
-			<% if(gt.getTinhTrang() != 0 && gt.getTinhTrang() >= 3 && gt.getTinhTrang() < 5){ %>
+			<% if(gt.getTinhTrang() >= 1 && gt.getTinhTrang() < 3){ %>
 					<input type="hidden" name="magiaotrinh" value="<%= gt.getMaGiaoTrinh() %>"/>
 					<input type="hidden" name="action" value="updateTinhTrang"/>
 					<input type="hidden" name="matinhtrang" value="<%= gt.getTinhTrang() %>"/>
-					<input type="hidden" name="redirect" value="Admin"/>
+					<input type="hidden" name="redirect" value="GiangVien"/>
 					<td><input type="submit" class="btn btn-success" value="Cap nhat"></td>
 			<% }else{%>
-	       		<td></td>
+	       		<td><a href="editGiaoTrinh.jsp?magiaotrinh=<%= gt.getMaGiaoTrinh() %>">Sua</a></td>
 	       	<% }%>
 	       	</form>
 	      </tr>

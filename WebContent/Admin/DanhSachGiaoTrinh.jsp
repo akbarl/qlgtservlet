@@ -37,18 +37,7 @@
 				<td><%= new GiaoTrinh_Model().getTenTinhTrang(gt.getTinhTrang()) %></td>
 				<td><%= gt.getNgayDangKy() %></td>
 				<td><%= gt.getNgayHoanThanh() %></td>
-				<form action="../updateGiaoTrinh">
-				
-				<% if(gt.getTinhTrang() != 0 && gt.getTinhTrang() >= 3 && gt.getTinhTrang() < 5){ %>
-					<input type="hidden" name="magiaotrinh" value="<%= gt.getMaGiaoTrinh() %>"/>
-					<input type="hidden" name="action" value="updateTinhTrang"/>
-					<input type="hidden" name="matinhtrang" value="<%= gt.getTinhTrang() %>"/>
-					<input type="hidden" name="redirect" value="Admin"/>
-					<td><input type="submit" class="btn btn-success" value="Cap nhat"></td>
-				<% }else{%>
-		       		<td></td>
-		       	<% }%>
-		       	</form>
+				<td></td>
 	       	
 		      </tr>
 	      <%} %>

@@ -20,6 +20,7 @@
 			<th>Email</th>
 			<th>Thuoc hoi dong</th>
 	        <th>Chuc vu</th>
+	        <th>Hanh dong</th>
 	      </tr>
 	    </thead>
 	    <tbody>
@@ -34,6 +35,10 @@
 		       		<td><%= gv.getMaHoiDong() %></td>
 		       	<% }%>
 				<td><%= new GiangVien_Model().getTenChucVu(gv.getMaChucVu()) %></td>
+		      	<td>
+		      		<a href="editGiangVien.jsp?magiangvien=<%= gv.getMaGiangVien() %>">Sua</a>
+		      		| <a href="../updateGiangVien?txtMaGiangVien=<%= gv.getMaGiangVien() %>&action=deleteGiangVien&redirect=Admin">Xoa</a>
+		      	</td>
 		      </tr>
 	      <%} %>
 	    </tbody>

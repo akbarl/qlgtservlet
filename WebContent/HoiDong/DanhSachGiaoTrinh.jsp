@@ -26,7 +26,6 @@
 	    </thead>
 	    <tbody>
 	    <%for(GiaoTrinh gt : listgt){ %>
-	    <% if(gt.getMaHoiDong() == 0){ %>
 		      <tr>
 		        <td><%= gt.getMaGiaoTrinh() %></td>
 		        <td><%= gt.getTenGiaoTrinh() %></td>
@@ -38,13 +37,28 @@
 				<% if(gt.getTinhTrang() == 0){ %>
 		       	 	<td>Dang cho lap hoi dong</td>
 		       	<% }else{%>
-		       		<td><%= gt.getMaHoiDong() %></td>
+		       		<td><%= new GiaoTrinh_Model().getTenTinhTrang(gt.getTinhTrang()) %></td>
 		       	<% }%>
-				<th><%= gt.getNgayDangKy() %></th>
-				<th><%= gt.getNgayHoanThanh() %></th>
-				<th><a href="LapHoiDong.jsp?magiaotrinh=<%= gt.getMaGiaoTrinh() %>">Lap</a></th>
+				<td><%= gt.getNgayDangKy() %></td>
+				<td><%= gt.getNgayHoanThanh() %></td>
+				<td>
+				<%if(gt.getMaHoiDong() == 0) {%>
+					<a href="LapHoiDong.jsp?magiaotrinh=<%= gt.getMaGiaoTrinh() %>">Lap</a>
+				<% }else{%>
+					<% if(gt.getTinhTrang() != 0 && gt.getTinhTrang() >= 3 && gt.getTinhTrang() < 5){ %>
+					<form action="../updateGiaoTrinh">
+					<input type="hidden" name="magiaotrinh" value="<%= gt.getMaGiaoTrinh() %>"/>
+					<input type="hidden" name="action" value="updateTinhTrang"/>
+					<input type="hidden" name="matinhtrang" value="<%= gt.getTinhTrang() %>"/>
+					<input type="hidden" name="redirect" value="HoiDong"/>
+					<input type="submit" class="btn btn-success" value="Cap nhat">
+					</form>
+					<% }else{%>
+						Dang cho hoan tat bien soan
+					<% }%>
+				<% }%>
+				</td>
 		      </tr>
-		  <%} %>
 	      <%} %>
 	    </tbody>
 	</table>

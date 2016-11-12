@@ -69,7 +69,16 @@ public class GiangVien_Model {
 		pst.setInt(1, hd);
 		pst.setInt(2, magv);
 		return pst.executeUpdate() > 0 ;
+	}
+	
+	public boolean setHoiDongNull(int MaHoiDong) throws SQLException
+	{
+		String sql = "UPDATE giangvien SET MaHoiDong = null WHERE MaHoiDong = "+MaHoiDong;
+		PreparedStatement pst = conn.prepareStatement(sql);
+		//pst.setInt(1, MaHoiDong);
+		//rs = getStatement().executeQuery(sql);
 		
+		return pst.executeUpdate() > 0 ;
 	}
 	
 	public ArrayList<GiangVien> getAll() throws Exception{
@@ -117,6 +126,27 @@ public class GiangVien_Model {
 		}
 		conn.close();
 		return gv;
+	}
+	
+	public ArrayList<GiangVien> getGiangVienbyHoiDong(int MaHoiDong) throws Exception{
+		 ArrayList<GiangVien> lst = new ArrayList<GiangVien>();
+		 String strSQL = "select * from giangvien WHERE MaHoiDong = "+MaHoiDong;
+		 try {
+			 rs = getStatement().executeQuery(strSQL);
+			 while(rs.next()){
+				 GiangVien gv = new GiangVien();
+				 gv.setMaGiangVien(rs.getInt("MaGiangVien"));
+				 gv.setTenGiangVien(rs.getString("TenGiangVien"));
+				 gv.setEmail(rs.getString("Email"));
+				 gv.setMaHoiDong(rs.getInt("MaHoiDong"));
+				 gv.setMaChucVu(rs.getInt("LoaiNguoiDung"));
+				 lst.add(gv);
+			 }
+		 } catch (Exception e) {
+			 throw new Exception(e.getMessage() +" Error at : " + strSQL);
+		 }
+		 conn.close();
+		 return lst;
 	}
 	
 	public boolean updateGiangVien(GiangVien gv) throws SQLException

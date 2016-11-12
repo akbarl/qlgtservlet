@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import Classes.GiangVien;
+import Classes.GiaoTrinh;
 import Classes.HoiDong;
 
 public class HoiDong_Model {
@@ -69,6 +70,41 @@ public class HoiDong_Model {
 		 }
 		 conn.close();
 		 return lst;
+	}
+	
+	public HoiDong getHoiDongbyID(int MaHoiDong) throws Exception
+	{
+		String strSQL = "SELECT * FROM hoidong WHERE MaHoiDong = "+MaHoiDong;
+		HoiDong hd = new HoiDong();
+		try{
+			rs = getStatement().executeQuery(strSQL);
+			while(rs.next()){
+				hd.setMaHoiDong(rs.getInt(1));
+				hd.setTenHoiDong(rs.getString(2));
+				hd.setMaGiaoTrinh(rs.getInt(3));
+				hd.setNgayThanhLap(rs.getDate(4));
+				hd.setNgayNghiemThu(rs.getDate(5));
+			 }
+			
+		}catch (Exception e) {
+			 throw new Exception(e.getMessage() +" Error at : " + strSQL);
+		}
+		conn.close();
+		return hd;
+	}
+	
+	public boolean updateHoiDong(HoiDong hd) throws SQLException
+	{
+		int result = 0;
+		String sql = "UPDATE hoidong SET TenHoiDong = ?, MaGiaoTrinh = ?, NgayThanhLap = ?, NgayNghiemThu = ? WHERE MaHoiDong = ?";
+		PreparedStatement pst = conn.prepareStatement(sql);
+		pst.setString(1, hd.getTenHoiDong());
+		pst.setInt(2, hd.getMaGiaoTrinh());
+		pst.setDate(3, hd.getNgayThanhLap());
+		pst.setDate(4, hd.getNgayNghiemThu());
+		pst.setInt(5, hd.getMaHoiDong());
+		return pst.executeUpdate() > 0;
+		
 	}
 
 }

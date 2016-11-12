@@ -37,7 +37,7 @@
 				<td><%= new GiaoTrinh_Model().getTenTinhTrang(gt.getTinhTrang()) %></td>
 				<td><%= gt.getNgayDangKy() %></td>
 				<td><%= gt.getNgayHoanThanh() %></td>
-				<td></td>
+				<td><a href="editGiaoTrinh.jsp?magiaotrinh=<%= gt.getMaGiaoTrinh() %>">Sua</a></td>
 	       	
 		      </tr>
 	      <%} %>

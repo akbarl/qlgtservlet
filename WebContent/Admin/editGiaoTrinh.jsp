@@ -20,7 +20,7 @@
     <form action="../updateGiaoTrinh">
     	<input type="hidden" name="magiaotrinh" value="<%= request.getParameter("magiaotrinh") %>">
     	<input type="hidden" name="action" value="updateGiaoTrinh">
-    	<input type="hidden" name="redirect" value="GiangVien"/>
+    	<input type="hidden" name="redirect" value="Admin"/>
     	<div class="form-group">
 		    <label for="tengiaotrinh">Ten giao trinh:</label>
 			<input type="text" class="form-control" name="txtTenGiaoTrinh" value="<%= gt.getTenGiaoTrinh() %>">

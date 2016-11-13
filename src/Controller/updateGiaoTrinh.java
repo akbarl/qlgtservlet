@@ -55,11 +55,13 @@ public class updateGiaoTrinh extends HttpServlet {
 			try {
 				String NgayHoanThanh = request.getParameter("nam") + "-"+request.getParameter("thang") +"-"+ request.getParameter("ngay");
 				String TenGiaoTrinh = request.getParameter("txtTenGiaoTrinh");
+				int TinhTrang = Integer.parseInt(request.getParameter("tinhtrang"));
 				GiaoTrinh_Model gtm = new GiaoTrinh_Model();
 				GiaoTrinh gt = new GiaoTrinh();
 				gt.setNgayHoanThanh(java.sql.Date.valueOf(NgayHoanThanh));
 				gt.setMaGiaoTrinh(magiaotrinh);
 				gt.setTenGiaoTrinh(TenGiaoTrinh);
+				gt.setTinhTrang(TinhTrang);
 				if(gtm.updateGiaoTrinh(gt));
 				response.sendRedirect(redirect+"/DanhSachGiaoTrinh.jsp");
 				

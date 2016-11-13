@@ -22,6 +22,8 @@
 	        <th>Ngày đăng ký</th>
 			<th>Ngày hoàn thành</th>
 			<th>Lap Hoi Dong</th>
+			<th>Hanh dong</th>
+			<th>In thong tin</th>
 	      </tr>
 	    </thead>
 	    <tbody>
@@ -58,6 +60,14 @@
 					<% }%>
 				<% }%>
 				</td>
+				<td>
+					<a href="editGiaoTrinh.jsp?magiaotrinh=<%= gt.getMaGiaoTrinh() %>">Sua</a>
+					|
+					<a href="../viewGiaoTrinh.jsp?magiaotrinh=<%= gt.getMaGiaoTrinh() %>">Xem</a>
+				</td>
+				<td>
+		       		<button type="button" class="btn btn-primary" onClick="openWin('../viewGiaoTrinh.jsp?magiaotrinh=<%= gt.getMaGiaoTrinh() %>')">In</button>
+		       	</td>
 		      </tr>
 	      <%} %>
 	    </tbody>
@@ -65,4 +75,16 @@
 </div>
 </fieldset>
 </div>
+<script type="text/javascript">
+  function openWin(url)
+  {
+    var myWindow=window.open(url,'','width=800,height=800');
+    
+    myWindow.document.close();
+	myWindow.focus();
+	myWindow.print();
+	myWindow.close();
+    
+  }
+</script>
 <jsp:include page="/WEB-INF/footer.jsp" />

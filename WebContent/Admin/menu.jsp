@@ -2,8 +2,9 @@
     pageEncoding="UTF-8"%>
 <div id="khungtrang">
 <div id="main-menu">
-	<a href="DanhSachGiaoTrinh.jsp"><img  src="../HinhAnh/GiangVien/dangky.png"  /></a>
-	<a href="DanhSach.jsp"><img  src="../HinhAnh/GiangVien/xemthongtin.png"  /></a>
+	<a href="DanhSachGiaoTrinh.jsp"><img  src="../HinhAnh/Admin/danhsachgt.png"  /></a>
+	<a href="DanhSachHoiDong.jsp"><img  src="../HinhAnh/Admin/danhsachhd.png"  /></a>
+	<a href="DanhSachGiangVien.jsp"><img  src="../HinhAnh/Admin/danhsachgv.png"  /></a>
 	<a href="search"><img  src="../HinhAnh/GiangVien/timkiem.png"  /></a>
 </div>
 <form action="../Logout" method="post">

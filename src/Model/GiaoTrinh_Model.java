@@ -155,11 +155,12 @@ public class GiaoTrinh_Model {
 	
 	public boolean updateGiaoTrinh(GiaoTrinh gt) throws SQLException
 	{
-		String sql = "UPDATE giaotrinh SET TenGiaoTrinh = ?, NgayHoanThanh = ? WHERE MaGiaoTrinh = ?";
+		String sql = "UPDATE giaotrinh SET TenGiaoTrinh = ?, NgayHoanThanh = ?, TinhTrang = ? WHERE MaGiaoTrinh = ?";
 		PreparedStatement pst = conn.prepareStatement(sql);
 		pst.setString(1, gt.getTenGiaoTrinh());
 		pst.setDate(2, gt.getNgayHoanThanh());
-		pst.setInt(3, gt.getMaGiaoTrinh());
+		pst.setInt(3, gt.getTinhTrang());
+		pst.setInt(4, gt.getMaGiaoTrinh());
 		return pst.executeUpdate() > 0 ;
 		
 	}

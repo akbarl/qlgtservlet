@@ -10,6 +10,13 @@
 	int MaGiangVien = (int) request.getSession().getAttribute("ID");
 	int MaGiaoTrinh = (int) Integer.parseInt(request.getParameter("magiaotrinh"));
 	GiaoTrinh gt = new GiaoTrinh_Model().getGiaoTrinhbyID(MaGiaoTrinh);
+	String[] TinhTrang = {"Cho lap hoi dong",
+			  "Da lap hoi dong",
+			  "Dang bien soan",
+			  "Hoan tat bien soan",
+			  "Dang nghiem thu",
+			  "Hoan tat nghiem thu"  
+			 };
 	
 %>
 <fieldset>
@@ -20,7 +27,7 @@
     <form action="../updateGiaoTrinh">
     	<input type="hidden" name="magiaotrinh" value="<%= request.getParameter("magiaotrinh") %>">
     	<input type="hidden" name="action" value="updateGiaoTrinh">
-    	<input type="hidden" name="redirect" value="GiangVien"/>
+    	<input type="hidden" name="redirect" value="HoiDong"/>
     	<div class="form-group">
 		    <label for="tengiaotrinh">Ten giao trinh:</label>
 			<input type="text" class="form-control" name="txtTenGiaoTrinh" value="<%= gt.getTenGiaoTrinh() %>">
@@ -35,6 +42,19 @@
 			Nam
 			<select id="yeardropdown" name="nam">
 			</select> 
+    	</div>
+    	
+    	<div class="form-group">
+		    <label for="tinhtrang">Tinh trang:</label>
+		    <select name="tinhtrang">
+		    	<%for(int i = 0 ; i <TinhTrang.length ; i++) { %>
+		    		<%if(gt.getTinhTrang() == i){ %>
+		    			<option value="<%= i %>" selected><%= TinhTrang[i] %></option>
+		    		<%}else{ %>
+		    			<option value="<%= i %>"><%= TinhTrang[i] %></option>
+		    		<%} %>
+		    	<% } %>
+		    </select>
     	</div>
     	
     	<script type="text/javascript">

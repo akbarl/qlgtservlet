@@ -16,7 +16,7 @@
 <fieldset>
 <div class="form-group">
 <div class="panel panel-default">
-	<div class="panel-heading">Tên GV: ${sessionScope.NAME}</div>
+	<div class="panel-heading">Tên GV: ${sessionScope.NAME} | <input type="button" value="Print this page" onClick="window.print()"></div>
     <div class="panel-body">
     <form action="../updateHoiDong" method="POST">
     	<input type="hidden" name="action" value="updateHoiDong">

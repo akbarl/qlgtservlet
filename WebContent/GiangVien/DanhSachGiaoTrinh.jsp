@@ -24,6 +24,7 @@
 	        <th>Ngày đăng ký</th>
 			<th>Ngày hoàn thành</th>
 			<th>Hanh dong</th>
+			<th>In thong tin</th>
 	      </tr>
 	    </thead>
 	    <tbody>
@@ -46,11 +47,18 @@
 					<input type="hidden" name="action" value="updateTinhTrang"/>
 					<input type="hidden" name="matinhtrang" value="<%= gt.getTinhTrang() %>"/>
 					<input type="hidden" name="redirect" value="GiangVien"/>
-					<td><input type="submit" class="btn btn-success" value="Cap nhat"></td>
+					<td><input type="submit" class="btn btn-success" value="Cap nhat">
 			<% }else{%>
-	       		<td><a href="editGiaoTrinh.jsp?magiaotrinh=<%= gt.getMaGiaoTrinh() %>">Sua</a></td>
+	       		<td><a href="editGiaoTrinh.jsp?magiaotrinh=<%= gt.getMaGiaoTrinh() %>">Sua</a>
 	       	<% }%>
+	       		|
+				<a href="../viewGiaoTrinh.jsp?magiaotrinh=<%= gt.getMaGiaoTrinh() %>">Xem</a>
+	       		</td>
 	       	</form>
+	       	<td>
+		       		<button type="button" class="btn btn-primary" onClick="openWin('../viewGiaoTrinh.jsp?magiaotrinh=<%= gt.getMaGiaoTrinh() %>')">In</button>
+		    </td>
+	       	
 	      </tr>
 	      <%} %>
 	    </tbody>

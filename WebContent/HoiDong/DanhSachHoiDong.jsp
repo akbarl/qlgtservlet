@@ -21,7 +21,7 @@
 			<th>Ngay Thanh Lap</th>
 	        <th>Ngay Nghiem Thu</th>
 	        <th>Hanh dong</th>
-	        <th>In danh sach</th>
+	        <th>In thong tin</th>
 	      </tr>
 	    </thead>
 	    <tbody>
@@ -38,7 +38,7 @@
 		       		<a href="../viewHoiDong.jsp?mahoidong=<%= hd.getMaHoiDong() %>">Xem</a>
 		       	</td>
 		      	<td>
-		       		<button type="button" class="btn btn-primary" onClick="openWin('../viewHoiDong.jsp?mahoidong=<%= hd.getMaHoiDong() %>')">In danh sach</button>
+		       		<button type="button" class="btn btn-primary" onClick="openWin('../viewHoiDong.jsp?mahoidong=<%= hd.getMaHoiDong() %>')">In</button>
 		       	</td>
 		      	</tr>
 	      <%} %>

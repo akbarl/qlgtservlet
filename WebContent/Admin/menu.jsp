@@ -5,6 +5,7 @@
 	<a href="DanhSachGiaoTrinh.jsp"><img  src="../HinhAnh/Admin/danhsachgt.png"  /></a>
 	<a href="DanhSachHoiDong.jsp"><img  src="../HinhAnh/Admin/danhsachhd.png"  /></a>
 	<a href="DanhSachGiangVien.jsp"><img  src="../HinhAnh/Admin/danhsachgv.png"  /></a>
+	<a href="ThongKe.jsp"><img  src="../HinhAnh/Admin/thongke.png"  /></a>
 	<a href="search"><img  src="../HinhAnh/GiangVien/timkiem.png"  /></a>
 </div>
 <form action="../Logout" method="post">

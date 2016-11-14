@@ -165,5 +165,89 @@ public class GiaoTrinh_Model {
 		
 	}
 	
+	public int countAll() throws SQLException, Exception
+	{
+		String sql = "select count(*) from giaotrinh";
+		rs = getStatement().executeQuery(sql);
+		while(rs.next())
+			return rs.getInt(1);
+		return 0;
+		
+	}
+	
+	public ArrayList<GiaoTrinh> searchGiaoTrinhbyID(int MaGiaoTrinh) throws Exception{
+		 ArrayList<GiaoTrinh> lst = new ArrayList<GiaoTrinh>();
+		 String strSQL = "select * from giaotrinh where MaGiaoTrinh LIKE '%"+MaGiaoTrinh+"%'";
+		 try {
+			 rs = getStatement().executeQuery(strSQL);
+			 while(rs.next()){
+				 GiaoTrinh gt = new GiaoTrinh();
+				 gt.setMaGiaoTrinh(rs.getInt("MaGiaoTrinh"));
+				 gt.setTenGiaoTrinh(rs.getString("TenGiaoTrinh"));
+				 gt.setNgayDangKy(rs.getDate("NgayDangKy"));
+				 gt.setNgayHoanThanh(rs.getDate("NgayHoanThanh"));
+				 gt.setTinhTrang(rs.getInt("TinhTrang"));
+				 gt.setMaGiangVien(rs.getInt("MaGiangVien"));
+				 gt.setMaHoiDong(rs.getInt("MaHoiDong"));
+				 lst.add(gt);
+			 }
+		 } catch (Exception e) {
+			 throw new Exception(e.getMessage() +" Error at : " + strSQL);
+		 }
+		 conn.close();
+		 return lst;
+	}
+	
+	public ArrayList<GiaoTrinh> searchGiaoTrinhbyName(String TenGiaoTrinh) throws Exception{
+		 ArrayList<GiaoTrinh> lst = new ArrayList<GiaoTrinh>();
+		 //String strSQL = "select * from giaotrinh where TenGiaoTrinh = '%"+TenGiaoTrinh+"%'";
+		 String strSQL = "SELECT * from giaotrinh where TenGiaoTrinh LIKE '%"+TenGiaoTrinh+"%'";
+		 try {
+			 rs = getStatement().executeQuery(strSQL);
+			 while(rs.next()){
+				 GiaoTrinh gt = new GiaoTrinh();
+				 gt.setMaGiaoTrinh(rs.getInt("MaGiaoTrinh"));
+				 gt.setTenGiaoTrinh(rs.getString("TenGiaoTrinh"));
+				 gt.setNgayDangKy(rs.getDate("NgayDangKy"));
+				 gt.setNgayHoanThanh(rs.getDate("NgayHoanThanh"));
+				 gt.setTinhTrang(rs.getInt("TinhTrang"));
+				 gt.setMaGiangVien(rs.getInt("MaGiangVien"));
+				 gt.setMaHoiDong(rs.getInt("MaHoiDong"));
+				 lst.add(gt);
+			 }
+		 } catch (Exception e) {
+			 throw new Exception(e.getMessage() +" Error at : " + strSQL);
+		 }
+		 conn.close();
+		 return lst;
+	}
+	
+	public ArrayList<GiaoTrinh> searchGiaoTrinhbyGV(int MaGiangVien) throws Exception{
+		 ArrayList<GiaoTrinh> lst = new ArrayList<GiaoTrinh>();
+		 String strSQL = "select * from giaotrinh where MaGiangVien LIKE '%"+MaGiangVien+"%'";
+		 try {
+			 rs = getStatement().executeQuery(strSQL);
+			 while(rs.next()){
+				 GiaoTrinh gt = new GiaoTrinh();
+				 gt.setMaGiaoTrinh(rs.getInt("MaGiaoTrinh"));
+				 gt.setTenGiaoTrinh(rs.getString("TenGiaoTrinh"));
+				 gt.setNgayDangKy(rs.getDate("NgayDangKy"));
+				 gt.setNgayHoanThanh(rs.getDate("NgayHoanThanh"));
+				 gt.setTinhTrang(rs.getInt("TinhTrang"));
+				 gt.setMaGiangVien(rs.getInt("MaGiangVien"));
+				 gt.setMaHoiDong(rs.getInt("MaHoiDong"));
+				 lst.add(gt);
+			 }
+		 } catch (Exception e) {
+			 throw new Exception(e.getMessage() +" Error at : " + strSQL);
+		 }
+		 conn.close();
+		 return lst;
+	}
+	
+	
+	
+	
+	
 
 }

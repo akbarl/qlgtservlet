@@ -175,6 +175,15 @@ public class GiangVien_Model {
 		return pst.executeUpdate() > 0 ;
 	}
 	
+	public int countAll() throws SQLException, Exception
+	{
+		String sql = "select count(*) from giangvien";
+		rs = getStatement().executeQuery(sql);
+		while(rs.next())
+			return rs.getInt(1);
+		return 0;
+		
+	}
 	public String getTenChucVu(int MaChucVu)
 	{
 		if(MaChucVu == 1)
@@ -185,6 +194,71 @@ public class GiangVien_Model {
 			return "Admin";
 		return "";
 	}
+	
+	public ArrayList<GiangVien> searchGiangVienbyID(int MaGiangVien) throws Exception{
+		 ArrayList<GiangVien> lst = new ArrayList<GiangVien>();
+		 String strSQL = "select * from giangvien WHERE MaGiangVien LIKE '%"+MaGiangVien+"%'";
+		 try {
+			 rs = getStatement().executeQuery(strSQL);
+			 while(rs.next()){
+				 GiangVien gv = new GiangVien();
+				 gv.setMaGiangVien(rs.getInt("MaGiangVien"));
+				 gv.setTenGiangVien(rs.getString("TenGiangVien"));
+				 gv.setEmail(rs.getString("Email"));
+				 gv.setMaHoiDong(rs.getInt("MaHoiDong"));
+				 gv.setMaChucVu(rs.getInt("LoaiNguoiDung"));
+				 lst.add(gv);
+			 }
+		 } catch (Exception e) {
+			 throw new Exception(e.getMessage() +" Error at : " + strSQL);
+		 }
+		 conn.close();
+		 return lst;
+	}
+	
+	public ArrayList<GiangVien> searchGiangVienbyName(String TenGiangVien) throws Exception{
+		 ArrayList<GiangVien> lst = new ArrayList<GiangVien>();
+		 String strSQL = "select * from giangvien WHERE TenGiangVien LIKE '%"+TenGiangVien+"%'";
+		 try {
+			 rs = getStatement().executeQuery(strSQL);
+			 while(rs.next()){
+				 GiangVien gv = new GiangVien();
+				 gv.setMaGiangVien(rs.getInt("MaGiangVien"));
+				 gv.setTenGiangVien(rs.getString("TenGiangVien"));
+				 gv.setEmail(rs.getString("Email"));
+				 gv.setMaHoiDong(rs.getInt("MaHoiDong"));
+				 gv.setMaChucVu(rs.getInt("LoaiNguoiDung"));
+				 lst.add(gv);
+			 }
+		 } catch (Exception e) {
+			 throw new Exception(e.getMessage() +" Error at : " + strSQL);
+		 }
+		 conn.close();
+		 return lst;
+	}
+	
+	public ArrayList<GiangVien> searchGiangVienbyEmail(String Email) throws Exception{
+		 ArrayList<GiangVien> lst = new ArrayList<GiangVien>();
+		 String strSQL = "select * from giangvien WHERE Email LIKE '%"+Email+"%'";
+		 try {
+			 rs = getStatement().executeQuery(strSQL);
+			 while(rs.next()){
+				 GiangVien gv = new GiangVien();
+				 gv.setMaGiangVien(rs.getInt("MaGiangVien"));
+				 gv.setTenGiangVien(rs.getString("TenGiangVien"));
+				 gv.setEmail(rs.getString("Email"));
+				 gv.setMaHoiDong(rs.getInt("MaHoiDong"));
+				 gv.setMaChucVu(rs.getInt("LoaiNguoiDung"));
+				 lst.add(gv);
+			 }
+		 } catch (Exception e) {
+			 throw new Exception(e.getMessage() +" Error at : " + strSQL);
+		 }
+		 conn.close();
+		 return lst;
+	}
+	
+	
 	
 	
 

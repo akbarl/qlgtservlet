@@ -6,8 +6,41 @@
 <jsp:include page="/WEB-INF/header.jsp" />
 <jsp:include page="menu.jsp" />
 
-<%ArrayList<GiangVien> listgt = new GiangVien_Model().getAll(); %>
-
+<%
+	ArrayList<GiangVien> listgv = new GiangVien_Model().getAll();
+	String type = request.getParameter("type");
+	String content = request.getParameter("content");
+	
+	//String tengiangvien = request.getParameter("tengiangvien");
+	if(type != null && content != null)
+	{
+		if(type.equalsIgnoreCase("name"))
+		{
+			listgv = new GiangVien_Model().searchGiangVienbyName(content);
+		}else if(type.equalsIgnoreCase("id"))
+		{
+			listgv = new GiangVien_Model().searchGiangVienbyID(Integer.parseInt(content));
+		}else if(type.equalsIgnoreCase("email"))
+		{
+			listgv = new GiangVien_Model().searchGiangVienbyEmail(content);
+		}
+		
+	}else
+	{
+		listgv = new GiangVien_Model().getAll();
+	}
+%>
+<form action="DanhSachGiangVien.jsp">
+	<select name="type">
+		<option value="name">Ten</option>
+		<option value="id">Ma giang vien</option>
+		<option value="email">Email</option>
+	</select>
+	
+	<input name="content" class="form-group">
+	
+	<input type="submit" value="tim kiem">
+</form>
 <fieldset>
 <div class="form-group">
 <div class="panel panel-default">
@@ -24,7 +57,7 @@
 	      </tr>
 	    </thead>
 	    <tbody>
-	    <%for(GiangVien gv : listgt){ %>
+	    <%for(GiangVien gv : listgv){ %>
 		      <tr>
 		        <td><%= gv.getMaGiangVien() %></td>
 		        <td><%= gv.getTenGiangVien() %></td>

@@ -6,7 +6,39 @@
 <jsp:include page="/WEB-INF/header.jsp" />
 <jsp:include page="menu.jsp" />
 
-<%ArrayList<GiaoTrinh> listgt = new GiaoTrinh_Model().getAll(); %>
+<%
+	ArrayList<GiaoTrinh> listgt = new GiaoTrinh_Model().getAll();
+	String type = request.getParameter("type");
+	String content = request.getParameter("content");
+	if(type != null && content != null)
+	{
+		if(type.equalsIgnoreCase("name"))
+		{
+			listgt = new GiaoTrinh_Model().searchGiaoTrinhbyName(content);
+		}else if(type.equalsIgnoreCase("id"))
+		{
+			listgt = new GiaoTrinh_Model().searchGiaoTrinhbyID(Integer.parseInt(content));
+		}else if(type.equalsIgnoreCase("gv"))
+		{
+			listgt = new GiaoTrinh_Model().searchGiaoTrinhbyGV(Integer.parseInt(content));
+		}
+		
+	}else
+	{
+		listgt = new GiaoTrinh_Model().getAll();
+	}
+%>
+<form action="DanhSachGiaoTrinh.jsp">
+	<select name="type">
+		<option value="name">Ten giao trinh</option>
+		<option value="id">Ma giao trinh</option>
+		<option value="gv">Ma giang vien</option>
+	</select>
+	
+	<input name="content" class="form-group">
+	
+	<input type="submit" value="tim kiem">
+</form>
 
 <fieldset>
 <div class="form-group">

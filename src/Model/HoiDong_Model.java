@@ -106,5 +106,16 @@ public class HoiDong_Model {
 		return pst.executeUpdate() > 0;
 		
 	}
+	
+	public int countAll() throws SQLException, Exception
+	{
+		String sql = "select count(*) from hoidong";
+		rs = getStatement().executeQuery(sql);
+		while(rs.next())
+			return rs.getInt(1);
+		return 0;
+		
+	}
+	
 
 }
